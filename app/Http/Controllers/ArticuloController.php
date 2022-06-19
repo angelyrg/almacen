@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Articulo;
+use App\EntradaDetalle;
 use App\EstadoArticulo;
+use App\SalidaDetalle;
 use App\UnidadMedida;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -120,9 +122,16 @@ class ArticuloController extends Controller
      */
     public function destroy(Articulo $articulo)
     {
-        $articulo->delete();
+        $entrada_detalle = EntradaDetalle::where('articulo_id', $articulo->id)->first();
+        $salida_detalle = SalidaDetalle::where('articulo_id', $articulo->id)->first();
 
-        return redirect("/articulos")->with('msg','¡Artículo elimindo satisfactoriamente!');
+        if (!(array)$entrada_detalle && !(array)$salida_detalle){
+            $articulo->delete();
+            return redirect()->route("articulos.index")->with("success", "Artículo ".$articulo->nombre." eliminado correctamente.");
+        }else{
+            return back()->with("danger", "No se puede eliminar ".$articulo->nombre.", porque hay registros asociados con este articulo.") ;
+        }
+
 
     }
 }

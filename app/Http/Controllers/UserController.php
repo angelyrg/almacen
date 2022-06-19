@@ -150,8 +150,6 @@ class UserController extends Controller
     {
         //$request->user()->authorizeRole(['Administrador']);
 
-       // return $user;
-
         $articulos = Articulo::where('usuario_id', $user->id)->first();
         $entrada = Entrada::where('usuario_id', $user->id)->first();
         $salida = Salida::where('usuario_id', $user->id)->first();
