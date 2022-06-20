@@ -102,14 +102,14 @@
             </li>
 
             <li class="nav-item ">
-                <a class="nav-link" href="/entradas">
+                <a class="nav-link" href="{{route('entradas.index')}}">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Entradas</span>
                 </a>
             </li>
 
             <li class="nav-item ">
-                <a class="nav-link" href="/entradas">
+                <a class="nav-link" href="{{route('salidas.index')}}">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Salidas</span>
                 </a>

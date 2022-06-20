@@ -2,46 +2,96 @@
 
 @section('content')
 
-<div class="row">
-    <div class="col">
-        <a href="/home">Home</a>
+<div class="container-fluid">
+
+    <div class="card shadow">
+        <div class="card-header d-flex flex-row align-items-center justify-content-between">
+            <h6 class="m-0 font-weight-bold text-primary">Información de la entrada</h6>
+            <a href="{{route('entradas.index')}}" class="btn btn-sm btn-icon-split btn-secondary">
+                <span class="icon"><i class="fa fa-times"></i></span>
+                <span class="text">Cerrar</span>
+            </a>
+        </div>
+
+        <div class="card-body">
+            <div class="row">
+                <div class="table-responsive">
+                    <table class="table table-sm table-bordered">
+                        <tr>
+                            <td><b>Encargado:</b></td>
+                            <td>{{$entrada->nombre." ".$entrada->apellido}}</td>
+                            <td><b>Fecha: </b></td>
+                            <td>{{ date("d/m/Y", strtotime($entrada->created_at)) }}</td>
+                        </tr>
+                        <tr>
+                            <td><b>DNI: </b></td>
+                            <td>{{$entrada->dni}}</td>
+                            <td><b>Hora: </b></td>
+                            <td>{{ date("g:i:s a", strtotime($entrada->created_at)) }}</td>
+                        </tr>
+                    </table>
+                    
+                </div>
+            </div>
+        </div>
     </div>
+
+    <div class="card shadow">
+        <div class="card-header">
+            <h6 class="m-0 font-weight-bold text-primary">Articulos ingresados</h6>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="table-responsive">
+                    <table class="table table-sm table-hover table-striped">
+                        <thead>
+                            <tr class="th">                                
+                                <th>#</th>
+                                <th>Articulo</th>
+                                <th>Cantidad</th>
+                                <th colspan="2">Opciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php $contador=1; ?>
+                            @foreach ($entrada->entrada_detalles as $item)
+                            <tr>
+                                <td>{{$contador++}}</td>
+                                <td>{{$item->articulo->nombre}}</td>
+                                <td>{{$item->cantidad}}</td>
+                                <td class="text-center">
+                                    <a class="btn btn-sm btn-warning"><i class="fa fa-pen"></i></a>
+                                </td>
+                                <td class="text-center">
+                                    <a class="btn btn-sm btn-danger"><i class="fa fa-minus"></i></a>
+                                </td>
+    
+                            </tr>             
+                            @endforeach
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="3"></td>
+                                
+                                <td colspan="2" class="text-center">
+                                    <a class="btn btn-sm btn-primary"><i class="fa fa-plus"></i></a>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                    
+                </div>
+                        
+            </div>
+        </div>
+
+    </div>
+       
+        
+   
+    
 </div>
 
-<div class="row">
-    <div class="col">
-        <h5>Detalle de la entrada</h5>
-    </div>
-</div>
-
-
-<div class="row">
-    <div class="col">
-        <table class="table table-hover table-striped">
-            <tr class="th text-center">
-                <th>ID</th>
-                <th colspan="2">Encargado</th>
-                <th>Fecha</th>
-                <th colspan="3">Opciones</th>
-            </tr>
-            @foreach ($entradas as $entrada)
-            <tr>
-                <td>{{$entrada->id}}</td>
-                <td>{{$entrada->nombre_encargado}}</td>
-                <td>{{$entrada->apellido_encargado}}</td>
-                <td>{{$entrada->created_at}}</td>
-
-                <td><a href="/entradas/{{$entrada->id}}" class="btn btn-sm btn-primary">Ver</a></td>
-                <td><a href="/entradas/{{$entrada->id}}/edit" class="btn btn-sm btn-warning">Editar</a></td>
-                {{-- <td><a href="" onclick="$('#confirmDelete').modal('show');" class="btn btn-sm btn-danger">Eliminar</a></td> --}}
-                <td><a href="/entradas/{{$entrada->id}}/confirmDelete" class="btn btn-sm btn-danger">Eliminar</a></td>
-            </tr>
-                
-            @endforeach
-            
-        </table>
-    </div>
-</div>
 
 
 

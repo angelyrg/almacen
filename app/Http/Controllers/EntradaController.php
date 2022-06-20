@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Entrada;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class EntradaController extends Controller
 {
@@ -14,7 +15,7 @@ class EntradaController extends Controller
      */
     public function index()
     {
-        //
+        return view("entradas.index", ['entradas' => Entrada::paginate(5)]);
     }
 
     /**
@@ -24,7 +25,7 @@ class EntradaController extends Controller
      */
     public function create()
     {
-        //
+        return view("entradas.create");
     }
 
     /**
@@ -35,7 +36,21 @@ class EntradaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $valData = $request->validate([
+            'nombre_encargado' => 'required|string|max:30',
+            'dni_encargado' => 'required|numeric|digits:8',
+        ]);
+
+        $entrada = new Entrada();
+        $entrada->nombre = $valData["nombre_encargado"];
+        $entrada->dni = $valData["dni_encargado"];
+        $entrada->usuario_id = Auth::user()->id;
+        $entrada->save();
+
+        $ultima_entrada = Entrada::findOrFail($entrada->id);
+
+        return redirect()->route('entradas.show', ['entrada' => $ultima_entrada])->with('success','Entrada creado satisfactoriamente.');
+        
     }
 
     /**
@@ -46,7 +61,7 @@ class EntradaController extends Controller
      */
     public function show(Entrada $entrada)
     {
-        //
+        return view("entradas.show", compact('entrada') );
     }
 
     /**
@@ -57,7 +72,7 @@ class EntradaController extends Controller
      */
     public function edit(Entrada $entrada)
     {
-        //
+        return view('entradas.edit', compact('entrada'));
     }
 
     /**
@@ -69,7 +84,16 @@ class EntradaController extends Controller
      */
     public function update(Request $request, Entrada $entrada)
     {
-        //
+        $valData = $request->validate([
+            'nombre_encargado' => 'required|string|max:30',
+            'dni_encargado' => 'required|numeric|digits:8',
+        ]);
+
+        $entrada->nombre = $valData["nombre_encargado"];
+        $entrada->dni = $valData["dni_encargado"];
+        $entrada->save();
+        return redirect()->route('entradas.index')->with('success','Entrada actualizada correctamente.');
+
     }
 
     /**
@@ -80,6 +104,12 @@ class EntradaController extends Controller
      */
     public function destroy(Entrada $entrada)
     {
-        //
+        
+        if($entrada->delete()){
+            return redirect()->route('entradas.index')->with('success','Entrada eliminado correctamente.');
+        }else{
+            return back()->with('danger', 'No se pudo eliminar');
+        }
+
     }
 }

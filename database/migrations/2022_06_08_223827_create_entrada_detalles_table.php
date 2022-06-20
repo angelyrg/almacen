@@ -14,11 +14,13 @@ class CreateEntradaDetallesTable extends Migration
     public function up()
     {
         Schema::create('entrada_detalles', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
+
             $table->increments('id');
             $table->integer("cantidad");
 
             $table->integer("entrada_id")->unsigned();
-            $table->foreign("entrada_id")->references("id")->on("entradas");
+            $table->foreign("entrada_id")->references("id")->on("entradas")->onDelete('cascade');
 
             $table->integer("articulo_id")->unsigned();
             $table->foreign("articulo_id")->references("id")->on("articulos");

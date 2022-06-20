@@ -17,4 +17,8 @@ class Articulo extends Model
     public function usuario_registrado(){
         return $this->belongsTo(User::class, "usuario_id");
     }
+
+    public function entrada_detalles(){
+        return $this->hasMany(EntradaDetalle::class, 'articulo_id');
+    }
 }

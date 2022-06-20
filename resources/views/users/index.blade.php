@@ -29,7 +29,6 @@
         </div>
         <div class="card-body">
             <div class="row">
-                
                 <div class="table-responsive"  >
                     <table id="usuarios" class="table table-hover table-striped">
                         <thead class="thead-dark">
@@ -59,14 +58,10 @@
                                     <td>{{$user->sucursal()->first()->nombre}}</td>
                                     <td>{{$user->role}}</td>
                                     <td><a href="/users/{{$user->id}}/edit" class="btn btn-sm btn-warning">Editar</a></td>
-                                    
                                     <td>
                                         <a href="" data-target="#modal-delete-{{$user->id}}" data-toggle="modal"><button class="btn btn-sm btn-danger">Eliminar</button></a>
                                     </td>
                                     @include('users.modal')
-                                    
-                                    {{-- <td><a href="/users/{{$user->id}}" class="btn btn-sm btn-danger" onclick="
-                                        return confirm('¿Estás seguro de eliminar este usuario?')">Eliminar</a></td> --}}
                                 </tr>
                             @endforeach
                         </tbody>                            

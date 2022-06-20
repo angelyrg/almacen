@@ -28,9 +28,9 @@ Route::resource('sucursal', 'SucursalController')->names('sucursales');
 
 Route::resource('articulos', 'ArticuloController')->names('articulos');
 
-Route::resource('entradas', 'EntradaController');
+Route::resource('entradas', 'EntradaController')->names('entradas');
 
-Route::resource('salida', 'SalidaController');
+Route::resource('salida', 'SalidaController')->names('salidas');
 
 Auth::routes();
 Route::get('home', 'HomeController@index')->name('home');

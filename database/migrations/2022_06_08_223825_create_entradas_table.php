@@ -17,7 +17,6 @@ class CreateEntradasTable extends Migration
             $table->increments('id');
             $table->string("dni", 8);
             $table->string("nombre", 30);
-            
             $table->integer("usuario_id")->unsigned();
             $table->foreign("usuario_id")->references("id")->on("users");
 
