@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Articulo;
 use App\Entrada;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -13,9 +14,12 @@ class EntradaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view("entradas.index", ['entradas' => Entrada::paginate(5)]);
+
+        $buscarpor =  $request->get('buscarpor');
+        $entradas = Entrada::where('nombre', 'LIKE', '%'.$buscarpor.'%')->orwhere('dni', 'LIKE', '%'.$buscarpor.'%')->paginate(5);
+        return view("entradas.index", compact('entradas', 'buscarpor'));
     }
 
     /**
@@ -61,7 +65,9 @@ class EntradaController extends Controller
      */
     public function show(Entrada $entrada)
     {
-        return view("entradas.show", compact('entrada') );
+        $articulos = Articulo::all();
+        
+        return view("entradas.show", compact('entrada', 'articulos') );
     }
 
     /**
@@ -104,6 +110,13 @@ class EntradaController extends Controller
      */
     public function destroy(Entrada $entrada)
     {
+        //return $entrada->entrada_detalles;
+
+        foreach( $entrada->entrada_detalles as $item ){
+            $articulo = Articulo::findOrFail($item->articulo_id);
+            $articulo->stock = $articulo->stock - $item->cantidad;
+            $articulo->save();
+        }
         
         if($entrada->delete()){
             return redirect()->route('entradas.index')->with('success','Entrada eliminado correctamente.');

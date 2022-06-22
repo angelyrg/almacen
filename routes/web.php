@@ -30,6 +30,10 @@ Route::resource('articulos', 'ArticuloController')->names('articulos');
 
 Route::resource('entradas', 'EntradaController')->names('entradas');
 
+Route::resource('entradadetalle', 'EntradaDetalleController')->names('entradadetalle');
+Route::get('entradadetalle/search', 'EntradaDetalleController@search')->name('entradadetalle.search');
+
+
 Route::resource('salida', 'SalidaController')->names('salidas');
 
 Auth::routes();

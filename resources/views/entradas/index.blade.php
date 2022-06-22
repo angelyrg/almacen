@@ -6,14 +6,24 @@
 
     @include('layouts.flashcard')
 
-    <div class="card">
+    <div class="card shadow">
         <div class="card-header">
-            <div class="row">
+            <div class="row  d-flex flex-row align-items-center justify-content-between">
                 <div class="col">
                     <h5>Entradas</h5>
                 </div>
+                <div class="col">
+                    <form class="d-flex" role="search" action="{{route('entradas.index')}}">
+                        <input class="form-control" type="search" name="buscarpor" value="{{$buscarpor}}" placeholder="Buscar encargado o DNI" aria-label="Buscar" autocomplete="off">
+    
+                        <button class="btn btn-success" type="submit">
+                            <div class="text">Buscar</div>
+                        </button>
+                    </form>
+                </div>
+
                 <div class="text-right">
-                    <a href="/entradas/create" class="btn btn-sm btn-primary"> <i class="fa fa-plus"></i> Nuevo</a>
+                    <a href="{{route('entradas.create')}}" class="btn  btn-primary"> <i class="fa fa-plus"></i> Nueva entrada</a>
                 </div>
             </div>    
         </div>

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class EntradaDetalle extends Model
 {
     public function entrada(){
-        return $this->belongsTo(Entrada::class, 'id');
+        return $this->belongsTo(Entrada::class, 'entrada_id');
     }
 
     public function articulo(){
