@@ -18,7 +18,7 @@ class CreateSalidaDetallesTable extends Migration
             $table->integer("cantidad");
 
             $table->integer("salida_id")->unsigned();
-            $table->foreign("salida_id")->references("id")->on("salidas");
+            $table->foreign("salida_id")->references("id")->on("salidas")->onDelete('cascade');
 
             $table->integer("articulo_id")->unsigned();
             $table->foreign("articulo_id")->references("id")->on("articulos");

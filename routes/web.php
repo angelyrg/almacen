@@ -34,7 +34,11 @@ Route::resource('entradadetalle', 'EntradaDetalleController')->names('entradadet
 Route::get('entradadetalle/search', 'EntradaDetalleController@search')->name('entradadetalle.search');
 
 
-Route::resource('salida', 'SalidaController')->names('salidas');
+Route::resource('salidas', 'SalidaController')->names('salidas');
+
+Route::resource('salidadetalle', 'SalidaDetalleController')->names('salidadetalle');
+Route::get('salidadetalle/search', 'SalidaDetalleController@search')->name('salidadetalle.search');
+
 
 Auth::routes();
 Route::get('home', 'HomeController@index')->name('home');
