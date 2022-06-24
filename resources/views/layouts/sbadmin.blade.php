@@ -74,7 +74,7 @@
 
                 <li class="nav-item ">
                     <a class="nav-link" href="{{route('sucursales.index')}}">
-                        <i class="fa fa-circle"></i>
+                        <i class="fas fa-map"></i>
                         <span>Sucursales</span>
                     </a>
                 </li>
@@ -96,21 +96,21 @@
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item ">
                 <a class="nav-link" href="{{route('articulos.index')}}">
-                    <i class="fa fa-circle"></i>
+                    <i class="fas fa-shopping-basket"></i>
                     <span>Articulos</span>
                 </a>
             </li>
 
             <li class="nav-item ">
                 <a class="nav-link" href="{{route('entradas.index')}}">
-                    <i class="fas fa-fw fa-chart-area"></i>
+                    <i class="fa fa-cart-plus"></i>
                     <span>Entradas</span>
                 </a>
             </li>
 
             <li class="nav-item ">
                 <a class="nav-link" href="{{route('salidas.index')}}">
-                    <i class="fas fa-fw fa-chart-area"></i>
+                    <i class="fa fa-cart-arrow-down"></i>
                     <span>Salidas</span>
                 </a>
             </li>
