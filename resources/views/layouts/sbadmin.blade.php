@@ -50,12 +50,10 @@
                     <span>Inicio</span>
                 </a>
             </li>
-            
 
             
-            <!--
-            if (Auth::user()->role->"admin")
-            -->         
+            @if (Auth::user()->role == "admin")
+
                 <!-- Divider -->
                 <hr class="sidebar-divider">
 
@@ -78,15 +76,13 @@
                         <span>Sucursales</span>
                     </a>
                 </li>
-            <!--
-            endif
-            -->
 
+            @endif
+            
 
             <!-- Divider -->
             <hr class="sidebar-divider">
 
-            
 
             <!-- Heading -->
             <div class="sidebar-heading">

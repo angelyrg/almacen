@@ -113,6 +113,9 @@
 
                     </div>
 
+                    {{ Auth::user() }}
+
+
 
                 </div>
             </div>
