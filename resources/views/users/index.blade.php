@@ -17,6 +17,16 @@
                 <div class="col mt-1">
                     <h5>Usuarios</h5>            
                 </div>
+
+                <div class="col">
+                    <form class="d-flex" role="search" action="{{route('usuarios.index')}}">
+                        <input class="form-control form-control-sm" type="search" name="buscarpor" value="{{$buscarpor}}" placeholder="Buscar por nombres o apellidos o DNI o correo" aria-label="Buscar" autocomplete="off">
+                        <button class="btn btn-success btn-sm" type="submit">
+                            <div class="text">Buscar</div>
+                        </button>
+                    </form>
+                </div>
+
                 <div class="text-right">
                     <a href="/users/create" class="btn btn-primary btn-sm btn-icon-split" >
                         <span class="icon text-white-100">
@@ -56,7 +66,20 @@
                                     <td>{{$user->celular}}</td>
                                     <!--td>{{--$user->sucursal_id--}}</td-->
                                     <td>{{$user->sucursal()->first()->nombre}}</td>
-                                    <td>{{$user->role}}</td>
+                                    @if ($user->role == 'admin')
+                                    <td>
+                                        <span class="badge badge-dark badge-counter">
+                                            <i class="fa fa-cogs"></i> Administrador
+                                        </span>
+                                    </td>
+                                    @else
+                                        <td>
+                                            <span class="badge badge-secondary badge-counter">
+                                                <i class="fa fa-user"></i> Almacenero
+                                            </span>
+                                        </td>
+                                                                                
+                                    @endif
                                     <td><a href="/users/{{$user->id}}/edit" class="btn btn-sm btn-warning">Editar</a></td>
                                     <td>
                                         <a href="" data-target="#modal-delete-{{$user->id}}" data-toggle="modal"><button class="btn btn-sm btn-danger">Eliminar</button></a>

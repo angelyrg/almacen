@@ -15,8 +15,8 @@
         <div class="card-header d-flex flex-row align-items-center justify-content-between">
             <h6 class="m-0 font-weight-bold text-primary">Información de la entrada</h6>
             <a href="{{route('entradas.index')}}" class="btn btn-sm btn-icon-split btn-secondary">
-                <span class="icon"><i class="fa fa-times"></i></span>
-                <span class="text">Cerrar</span>
+                <span class="icon"><i class="fa fa-arrow-left"></i></span>
+                <span class="text">Entradas</span>
             </a>
         </div>
 

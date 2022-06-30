@@ -12,6 +12,11 @@ use Illuminate\Support\Facades\Auth;
 
 class ArticuloController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -19,7 +24,8 @@ class ArticuloController extends Controller
      */
     public function index()
     {
-        return view('articulos.index', ['articulos' => Articulo::paginate(6)]);
+        $articulos = Articulo::paginate(6);
+        return view('articulos.index', compact('articulos'));
     }
 
     /**
@@ -71,7 +77,7 @@ class ArticuloController extends Controller
      */
     public function show(Articulo $articulo)
     {
-        //
+        return view("articulos.show", compact('articulo') );
     }
 
     /**

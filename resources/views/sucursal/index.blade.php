@@ -42,7 +42,9 @@
                             @foreach ($sucursals as $sucursal)
                             <tr>
                                 <td>{{$sucursal->id}}</td>
-                                <td>{{$sucursal->nombre}}</td>
+                                <td>
+                                    <a href="{{route('sucursales.show', $sucursal->id)}}">{{$sucursal->nombre}}</a>
+                                </td>
                                 <td>{{$sucursal->direccion}}</td>
                                 <td>{{$sucursal->distrito}}</td>
                                 <td>{{$sucursal->provincia}}</td>

@@ -30,9 +30,16 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        //$request->user()->authorizeRole(['Administrador']);
+        //return view('users.index', ['users' => User::paginate(7)]);
 
-        return view('users.index', ['users' => User::paginate(7)]);
+        $buscarpor =  $request->get('buscarpor');
+        $users = User::where('nombre', 'LIKE', '%'.$buscarpor.'%')
+                    ->orwhere('apellido', 'LIKE', '%'.$buscarpor.'%')
+                    ->orwhere('dni', 'LIKE', '%'.$buscarpor.'%')
+                    ->orwhere('email', 'LIKE', '%'.$buscarpor.'%')
+                    ->paginate(7);
+        return view("users.index", compact('users', 'buscarpor'));
+
     }
 
     /**
@@ -133,7 +140,6 @@ class UserController extends Controller
         $user->apellido = $valData['apellido'];
         $user->dni = $valData['dni'];
         $user->email = $valData['email'];
-        $user->password = Hash::make($valData['dni']);
         $user->celular = $valData['celular'];
         if ($valData['role_id'] == 1){
             $user->role = "admin";

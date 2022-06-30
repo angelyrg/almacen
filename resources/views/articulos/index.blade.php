@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="container-fluid">
+<div class="">
 
     @include('layouts.flashcard')
 
@@ -50,7 +50,7 @@
                                     <th>Unid. medida</th>
                                     <th>Estado</th>
                                     <th>Agregado por</th>
-                                    <th colspan="2">Opciones</th>
+                                    <th colspan="3">Opciones</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -63,7 +63,13 @@
                                         <td>{{ $articulo->stock }}</td>
                                         <td>{{ $articulo->unidad_medida->nombre }}</td>
                                         <td>{{ $articulo->estado_articulo->nombre }}</td>
-                                        <td>{{ $articulo->usuario_registrado->nombre }}</td>
+                                        <td>
+                                            <span class="badge badge-info badge-counter">
+                                                <i class="fa fa-user"></i> {{ $articulo->usuario_registrado->nombre }}
+                                            </span>
+                                        </td>
+                                        <td><a href="{{route('articulos.show', $articulo->id )}}" class="btn btn-sm btn-success"> Historial</a></td>
+
                                         <td><a href="{{route('articulos.edit', $articulo->id )}}" class="btn btn-sm btn-warning">Editar</a></td>
                                         <td>
                                             <a data-target="#modal-delete-{{$articulo->id}}" data-toggle="modal"><button class="btn btn-sm btn-danger">Eliminar</button></a>

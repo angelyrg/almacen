@@ -72,7 +72,8 @@ class SucursalController extends Controller
      */
     public function show(Sucursal $sucursal)
     {
-        //
+        return view("sucursal.show", compact('sucursal') );
+
     }
 
     /**

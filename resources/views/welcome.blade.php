@@ -18,6 +18,7 @@
                 font-weight: 200;
                 height: 100vh;
                 margin: 0;
+                /* background-image: url("https://www.dachser.pe/images/Corporate/DGI_003542_zugeschnitten_rdax_65.jpg"); */
             }
 
             .full-height {
@@ -47,16 +48,23 @@
             .title {
                 font-size: 84px;
                 color: white;
+                text-shadow: #000000
             }
 
             .links > a {
-                color: white;
-                padding: 0 25px;
-                font-size: 13px;
+                color: rgb(0, 0, 0);
+                padding: 1px 25px;
+                font-size: 20px;
                 font-weight: 600;
                 letter-spacing: .1rem;
                 text-decoration: none;
                 text-transform: uppercase;
+                background-color: rgb(255, 255, 255);
+            }
+
+            .links > a:hover {
+                color: rgb(255, 255, 255);
+                background-color: rgb(0, 0, 0);
             }
 
             .m-b-md {
@@ -69,10 +77,9 @@
 
             <div class="content " >
                 <div class="title m-b-md ">
-                    ITMEEC
-                    
+                    ITMEEC S.A.C.
                 </div>
-                <small>Sitema de Gestión de Almacén</small>
+                <small>Sistema de Gestión de Almacén</small>
 
                 <div class="links">
                     @if (Route::has('login'))
