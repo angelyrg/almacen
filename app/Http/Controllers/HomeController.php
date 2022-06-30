@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Articulo;
+use App\Sucursal;
+use App\User;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,7 +26,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $usuarios = User::all()->count();
+        $sucursales = Sucursal::all()->count();
+        $articulos = Articulo::all()->count();
+        return view('home', compact('usuarios', 'sucursales', 'articulos'));
     }
 
     public function resetPassword()
