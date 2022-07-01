@@ -22,7 +22,7 @@ Route::get('/', function () {
 
 
 Route::resource('users', 'UserController')->names('usuarios');
-Route::get('perfil', 'UserController@perfil');
+Route::get('perfil', 'UserController@perfil')->name('perfil');
 
 Route::resource('sucursal', 'SucursalController')->names('sucursales');
 

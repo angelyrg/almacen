@@ -8,7 +8,7 @@
         <h6 class="m-0 font-weight-bold text-primary">Mi perfil</h6>
     </div>
 
-    <form action="" method="post" class="form-horizontal">
+    <form  method="post" class="form-horizontal">
 
         <div class="card-body">
 
@@ -17,71 +17,68 @@
                     <img class="img-profile rounded-circle "  src="{{asset('sbadmin/img/undraw_profile.svg')}}">
                 </div>
             </div>
-            <div class="row form-group col-md-6 offset-md-6">
+            {{-- <div class="row form-group col-md-6 offset-md-6">
                 <a href="" class="btn btn-sm btn-secondary "><i class="fa fa-camera"></i> Cambiar foto</a>
-            </div>
-            
-
-            
+            </div> --}}
 
             <div class="form-group row">
                 <div class="col-6 text-right">
                     <label> <b>Nombres:</b> </label>
                 </div>
                 <div class="col-6">
-                    <p>{{$misdatos->first()->name}}</p>
+                    <p>{{$misdatos->nombre}}</p>
                 </div>
 
                 <div class="col-6 text-right">
                     <label> <b>Apellidos:</b> </label>
                 </div>
                 <div class="col-6">
-                    <p>{{$misdatos->first()->lastname}}</p>
+                    <p>{{$misdatos->apellido}}</p>
                 </div>
 
                 <div class="col-6 text-right">
                     <label> <b>DNI:</b> </label>
                 </div>
                 <div class="col-6">
-                    <p>{{$misdatos->first()->dni}}</p>
+                    <p>{{$misdatos->dni}}</p>
                 </div>
 
                 <div class="col-6 text-right">
                     <label> <b>Correo electrónico:</b> </label>
                 </div>
                 <div class="col-6">
-                    <p>{{$misdatos->first()->email}}</p>
+                    <p>{{$misdatos->email}}</p>
                 </div>
 
                 <div class="col-6 text-right">
                     <label> <b>Celular:</b> </label>
                 </div>
                 <div class="col-6">
-                    <p>{{$misdatos->first()->phone}}</p>
+                    <p>{{$misdatos->celular}}</p>
                 </div>
 
                 <div class="col-6 text-right">
                     <label> <b>Rol de usuario:</b> </label>
                 </div>
                 <div class="col-6">
-                    <p>{{$misdatos->first()->role->name}}</p>
+                    @if ($misdatos->role == "admin")
+                        <p>Administrador</p>
+                    @else
+                        <p>Almacenero</p>
+                    @endif
                 </div>
 
                 <div class="col-6 text-right">
                     <label> <b>Sede:</b> </label>
                 </div>
                 <div class="col-6">
-                    <p>{{$misdatos->first()->sede->nombre}}</p>
+                    <p>{{$misdatos->sucursal->nombre}}</p>
                 </div>
-
-
             </div>
 
-
-            
         </div>
         <div class="card-footer text-right">
-            <button type="submit" class="btn btn-success"><i class="fa fa-pen"></i> Editar mis datos</button>
+            <a type="" class="btn btn-success"><i class="fa fa-pen"></i> Editar mis datos</a>
         </div>
 
     </form>

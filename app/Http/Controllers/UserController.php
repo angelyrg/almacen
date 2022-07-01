@@ -180,8 +180,7 @@ class UserController extends Controller
 
     public function perfil()
     {
-        $user_id = Auth::user();
-        $misdatos = User::findOrFail($user_id);
+        $misdatos = User::findOrFail( Auth::user()->id);
 
         return view('perfil.index', compact('misdatos'));
     }
