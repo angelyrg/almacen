@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Articulo;
 use App\Entrada;
+use App\Http\Requests\UpdateProfileRequest;
 use App\Salida;
 use App\Sucursal;
 use Illuminate\Http\Request;
@@ -13,6 +14,7 @@ use Illuminate\Validation\Rule;
 use App\User;
 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\ValidationException;
 
 class UserController extends Controller
 {
@@ -161,7 +163,6 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        //$request->user()->authorizeRole(['Administrador']);
 
         $articulos = Articulo::where('usuario_id', $user->id)->first();
         $entrada = Entrada::where('usuario_id', $user->id)->first();
@@ -173,16 +174,35 @@ class UserController extends Controller
         }else{
             return back()->with("danger", "No se puede eliminar ".$user->nombre.", porque hay registros asociados a este usuario.") ;
         }
-
-
     }
 
 
     public function perfil()
     {
         $misdatos = User::findOrFail( Auth::user()->id);
-
         return view('perfil.index', compact('misdatos'));
+    }
+
+
+    public function changePassword(UpdateProfileRequest $request)
+    {
+
+        if (! Hash::check($request->password_old, Auth::user()->password )){
+
+            return back()->with('danger', 'Contraseña actual incorrecta.')->withInput();
+            //throw ValidationException::withMessages(['password_old', 'Contraseña incorrecta']);
+
+        }else{
+
+            $me = User::FindOrFail( Auth::user()->id);
+            $me->password = bcrypt($request->password_new);
+            $me->save();
+
+            return redirect()->route('password.edit')->with("success", "Contraseña actualizada.");
+
+        }
+
+
     }
 
 

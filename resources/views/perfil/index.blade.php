@@ -78,6 +78,8 @@
 
         </div>
         <div class="card-footer text-right">
+            <a href=" {{route('home')}} " class="btn btn-secondary"><i class="fa fa-times"></i> Salir</a>
+
             <a type="" class="btn btn-success"><i class="fa fa-pen"></i> Editar mis datos</a>
         </div>
 
