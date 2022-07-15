@@ -23,6 +23,7 @@ Route::get('/', function () {
 
 Route::resource('users', 'UserController')->names('usuarios');
 Route::get('perfil', 'UserController@perfil')->name('perfil');
+Route::put('perfil', 'UserController@changePassword')->name('password_update');
 
 Route::resource('sucursal', 'SucursalController')->names('sucursales');
 
@@ -43,4 +44,4 @@ Route::get('salidadetalle/search', 'SalidaDetalleController@search')->name('sali
 Auth::routes();
 Route::get('home', 'HomeController@index')->name('home');
 
-Route::get('resetPassword', 'HomeController@resetPassword');
+Route::get('resetPassword', 'HomeController@resetPassword')->name('password.edit');
